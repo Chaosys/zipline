@@ -78,7 +78,7 @@ install:
   - CONDA_NPY=${NPY_VERSION_ARR[0]}${NPY_VERSION_ARR[1]}
   - CONDA_PY=$TRAVIS_PYTHON_VERSION
 
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then brew update; brew install lcov; fi  # to build bcolz
+# - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then brew update; brew install lcov; fi  # to build bcolz
 
   - if [[ "$TRAVIS_SECURE_ENV_VARS" = "true" && "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then DO_UPLOAD="true"; else DO_UPLOAD="false"; fi
   - |
@@ -97,6 +97,7 @@ install:
 
   - CACHE_DIR="$HOME/.cache/.pip/pip_np""$CONDA_NPY"
   - python -m pip install --upgrade pip coveralls --cache-dir=$CACHE_DIR
+  - unset TRAVIS  # Otherwise bcolz tries to compile with coverage on py2, which fails on OSX.
   - python -m pip install -r etc/requirements.txt --cache-dir=$CACHE_DIR
   - python -m pip install -r etc/requirements_dev.txt --cache-dir=$CACHE_DIR
   - python -m pip install -r etc/requirements_blaze.txt --cache-dir=$CACHE_DIR  # this uses git requirements right now
