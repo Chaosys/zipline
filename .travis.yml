@@ -4,6 +4,9 @@ fast_finish: true
 python:
   - 2.7
   - 3.5
+os:
+  - linux
+  - osx
 env:
   global:
     # 1. Generated a token for travis at https://anaconda.org/quantopian/settings/access with scope api:write.
@@ -24,10 +27,10 @@ matrix:
   exclude:
     - python: 2.7
       env: NUMPY_VERSION=1.14.1 PANDAS_VERSION=0.22.0 SCIPY_VERSION=1.0.0 PANDAS_DATAREADER_VERSION=0.4.0 DASK_VERSION=0.17.1
-  include:
-    - os: linux
-    - os: osx
-      compiler: clang
+#  include:
+#    - os: linux
+#    - os: osx
+#      compiler: clang
 
 cache:
   directories:
