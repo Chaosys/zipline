@@ -78,6 +78,8 @@ install:
   - CONDA_NPY=${NPY_VERSION_ARR[0]}${NPY_VERSION_ARR[1]}
   - CONDA_PY=$TRAVIS_PYTHON_VERSION
 
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then brew update; brew install lcov; fi  # to build bcolz
+
   - if [[ "$TRAVIS_SECURE_ENV_VARS" = "true" && "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then DO_UPLOAD="true"; else DO_UPLOAD="false"; fi
   - |
     for recipe in $(ls -d conda/*/ | xargs -I {} basename {}); do
