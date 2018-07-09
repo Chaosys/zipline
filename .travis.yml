@@ -28,13 +28,10 @@ matrix:
     # Since Travis OSX doesn’t natively support Python, use some workarounds.
     - os: osx
       language: generic
-#      env: TRAVIS_PYTHON_VERSION=2.7
-#    - os: osx
-#      language: generic
-#      env: TRAVIS_PYTHON_VERSION=3.5
-#    - os: osx
-#      language: generic
-#      env: PYTHON=3.5.1
+      env: TRAVIS_PYTHON_VERSION=2.7
+    - os: osx
+      language: generic
+      env: TRAVIS_PYTHON_VERSION=3.5
 
 cache:
   directories:
